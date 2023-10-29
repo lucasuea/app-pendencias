@@ -1,1 +1,13 @@
-node_modules
+# Ignorar a pasta node_modules
+/node_modules
+
+# Ignorar arquivos .env
+.env
+
+/node_modules
+
+# Ignor
+
+/node_modules
+
+# Ign
