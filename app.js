@@ -2,32 +2,35 @@ const express = require('express');
 
 const app = express();
 
-app.use(express.static(__dirname + '/public'));
+const envConfig = require("./config/envConfig");
+envConfig();
+const bodyParserConfig = require("./config/body-parser");
+bodyParserConfig(app);
 
-const bodyParser = require('body-parser');
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json());
+const cookieParserConfig = require("./config/cookies");
+cookieParserConfig(app);
 
+const corsConfig = require("./config/cors");
+corsConfig(app);
 
-app.set('view engine', 'ejs'); 
-app.set('views', './views'); 
+const ejsConfig = require("./config/ejs");
+ejsConfig(app);
 
-const cors = require('cors');   
-app.use(cors());
+const publicPathConfig = require("./config/publicPath");
+publicPathConfig(app, express);
 
-
-const cookieParser = require("cookie-parser")
-app.use(cookieParser())
 
 app.get('/', (req, res) => {
     res.render('login');
 })
 
 app.post('/login', (req, res) => {
-    
+
 })
 
-app.listen(3003, ()=>{
-    console.log("Servidor rodando na porta 3003");
+
+
+app.listen(process.env.PORT_APP, ()=>{
+    console.log("Servidor rodando na porta " + process.env.PORT_APP);
 })
 
