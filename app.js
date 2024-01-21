@@ -19,6 +19,8 @@ ejsConfig(app);
 const publicPathConfig = require("./config/publicPath");
 publicPathConfig(app, express);
 
+//escrever o código para usar o express router e user o jwt para a autenticação
+
 
 app.get('/', (req, res) => {
     res.render('login');
